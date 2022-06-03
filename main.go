@@ -2,14 +2,17 @@ package main
 
 import (
 	"encoding/json"
+	"fmt"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
 )
 
-// a change
 var inMemoryStore = make(map[string]string)
 var redirectURL = "http://0.0.0.0:9000"
+
+// to show off pod lifecycle
+var count int = 1
 
 func setupRouter() *gin.Engine {
 	r := gin.Default()
@@ -44,7 +47,9 @@ func setupRouter() *gin.Engine {
 	})
 
 	r.GET("/stuff", func(c *gin.Context) {
-		c.JSON(http.StatusOK, "!stuff!")
+		count++
+		result := fmt.Sprintf("Go %d", count)
+		c.JSON(http.StatusOK, result)
 	})
 
 	return r
