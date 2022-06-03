@@ -6,6 +6,7 @@ import (
 
 	"github.com/gin-gonic/gin"
 )
+
 // a change
 var inMemoryStore = make(map[string]string)
 var redirectURL = "http://0.0.0.0:9000"
@@ -41,6 +42,11 @@ func setupRouter() *gin.Engine {
 		vote := temp["vote"]
 		inMemoryStore[voter_id] = vote
 	})
+
+	r.GET("/stuff", func(c *gin.Context) {
+		c.JSON(http.StatusOK, "!stuff!")
+	})
+
 	return r
 }
 
