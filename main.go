@@ -49,7 +49,7 @@ func setupRouter() *gin.Engine {
 
 	r.GET("/stuff", func(c *gin.Context) {
 		count++
-		result := fmt.Sprintf("Go %s - %d", runtime.Version(), count)
+		result := fmt.Sprintf("Go Again %s - %d", runtime.Version(), count)
 		c.JSON(http.StatusOK, result)
 	})
 
